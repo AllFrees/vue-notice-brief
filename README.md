@@ -6,6 +6,9 @@ npm i vue-notify-brief
 
 `
 import vueNotifySimple from 'vue-notify-brief'
+`
+
+`
 Vue.use(vueNotifySimple)
 `
 
