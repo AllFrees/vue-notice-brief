@@ -34,7 +34,7 @@ export default {
 
   mounted() {
     this.$nextTick(() => {
-      window.addEventListener('hashchange', this.clear);
+      window.addEventListener('hashchange', this.cancelFn);
     });
   },
 
@@ -65,37 +65,19 @@ export default {
     confirmTxt: {
       type: String,
       default: '确认',
-    },
-    closed: {
-      type: Function
-    },
-    defined: {
-      type: Function
-    }
-  },
-  watch: {
-    '$route': function(to, from) {
-      console.log(to)
     }
   },
   methods: {
     cancelFn() {
-      this.showStatus = "showOut"
-      if (this.closed) {
-        this.closed()
-      }
-      this.clear()
+      this.$emit('hasClear')
     },
     confirmFn() {
       this.$emit('hasConfirm')
-    },
-    clear() {
-      this.$emit('hasClear')
     }
   },
 
   beforeDestroy() {
-    window.removeEventListener('hashchange', this.close, false);
+    window.removeEventListener('hashchange', this.cancelFn);
   },
 }
 </script>
