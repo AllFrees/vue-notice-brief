@@ -22,6 +22,7 @@ this.$notice({
   confirmTxt: "确认按钮文本",
   confirm: true,    // 是否显示 取消/确认 按钮 默认：false
   icon: false,      // 是否显示 标题/icon 默认：false(显示标题不显示icon)
+  isOver: true,     // 是否显示蒙层 默认：false
 }).then(result => {
   if (result == 'confirm') {       // 点击确认回调
     // do something

@@ -70,6 +70,7 @@ const notify = (config) => {
     // 确认
     vmse.$on('hasConfirm', () => {
       vmse.showStatus = "showOut"
+      vmse.mantleStatus['allOver'] = false
       deletVm(vmse)
       resolve('confirm')
     })
@@ -77,6 +78,7 @@ const notify = (config) => {
     // 取消
     vmse.$on('hasClear', () => {
       vmse.showStatus = "showOut"
+      vmse.mantleStatus['allOver'] = false
       deletVm(vmse)
       resolve('cancel')
     })

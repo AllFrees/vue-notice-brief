@@ -1,5 +1,6 @@
 <template>
-  <div class="notification" :class="showStatus">
+  <div class="mantle" :class="mantleStatus">
+    <div class="notification" :class="showStatus">
     <div class="title" v-if="!icon">{{ title }}</div>
     <img v-if="icon" :src="iconUrl" alt="success" class="successIcon" />
     <div class="content">{{ content }}</div>
@@ -15,6 +16,7 @@
       class="cancelIcon"
     />
   </div>
+  </div>
 </template>
 
 <script>
@@ -28,7 +30,10 @@ export default {
   data() {
     return {
       cancelImg,
-      showStatus: "showIn"
+      showStatus: "showIn",
+      mantleStatus: {
+        "allOver": this.isOver
+      }
     }
   },
 
@@ -65,6 +70,10 @@ export default {
     confirmTxt: {
       type: String,
       default: '确认',
+    },
+    isOver: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -83,6 +92,13 @@ export default {
 </script>
 
 <style scoped>
+.mantle {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.allOver { background: rgba(0,0,0,0.5); }
 .notification {
   position: absolute;
   left: 0.37rem;
