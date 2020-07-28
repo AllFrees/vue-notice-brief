@@ -27,7 +27,9 @@ let needId = 0, noticeQueue = []
 // 移除弹窗
 const removeNotice = (notice) => {
   noticeQueue.splice(0, 1)
-  document.body.removeChild(notice.vm.$el)
+  if (document.body.contains(notice.vm.$el)) {
+    document.body.removeChild(notice.vm.$el)
+  }
   notice.vm.$destroy()
 }
 

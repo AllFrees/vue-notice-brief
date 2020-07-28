@@ -39,7 +39,7 @@ export default {
 
   mounted() {
     this.$nextTick(() => {
-      window.addEventListener('hashchange', this.cancelFn);
+      window.addEventListener('hashchange', this.clear);
     });
   },
 
@@ -82,11 +82,17 @@ export default {
     },
     confirmFn() {
       this.$emit('hasConfirm')
+    },
+    clear() {
+      this.$destroy(true)
+      if (this.$el.parentNode) {
+        this.$el.parentNode.removeChild(this.$el)
+      }
     }
   },
 
   beforeDestroy() {
-    window.removeEventListener('hashchange', this.cancelFn);
+    window.removeEventListener('hashchange', this.clear);
   },
 }
 </script>
